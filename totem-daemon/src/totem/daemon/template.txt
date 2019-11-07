@@ -1,0 +1,23 @@
+1b7405
+0a
+0a
+1b"a"01
+"Fecha y hora"
+0a
+"SEDE
+0a
+"CATEGORÍA"
+0a
+"SUBCATEGORÍA"
+0a
+1b"!"001C"!"001b"E"01
+"UD. SERÁ LLAMADO CON EL NÚMERO"
+0a
+"CER38"
+0a
+0a
+1b"!"001C"!"001b"E"00
+"TIPO DE TRÁMITE"
+0a
+0a
+1b69

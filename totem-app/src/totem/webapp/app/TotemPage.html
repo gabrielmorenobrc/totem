@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Terminal de Auto Gestión</title>
+</head>
+<body style="overflow: hidden;">
+
+<div class="ui banner grid padded" style="margin-left:0px; margin-bottom:1rem;">
+    <div class="six wide column">
+        <div class="ui grid">
+            <div class="three wide column ">
+                <div class="ui middle aligned medium image" style="width:100px !important">
+                    <div class="img_banner"></div>
+                </div>
+            </div>
+            <div class="thirteen wide column text-vertical-center">
+                <span class="white-text ui header large" style="margin-left: 15px;" wicket:id="nombreSede">Billinghust</span>
+            </div>
+        </div>
+    </div>
+    <div class="ten wide column">
+        <div class="column">
+            <div wicket:id="menu"></div>
+        </div>
+    </div>
+</div>
+<div class="ui container main paddt15" style="padding-top: 0;">
+    <div wicket:id="contenedor" style="position:relative">
+        <div class="ui inverted dimmer">
+            <div class="ui text loader">Cargando</div>
+        </div>
+        <button class="ui large icon blue button absolute scrollup" onclick="up()" style="right: -65px; top:15px" id="up">
+            <i class="chevron up icon"></i>
+        </button>
+        <div class="contenidoTotem" wicket:id="contenido"></div>
+        <button class="ui large icon blue button absolute scrolldown" onclick="down()" style="right: -65px; bottom:15px" id="down">
+            <i class="chevron down icon"></i>
+        </button>
+    </div>
+</div>
+<div wicket:id="notifier"></div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+N_SUCCESS 0 Successful termination
+N_ERR_HANDLE -1 Handle error (Device context handle, etc.)
+N_ERR_PRTOPEN -2 Printer open error
+N_ERR_SEND_ERROR -3 Transmission error
+N_ERR_OFFLINE -5 Off line
+N_ERR_PRTCLOSE -6 Printer close error
+N_ERR_FILEOPEN -10 File open error
+N_ERR_NOT_MAPPING -11 Expanded information obtaining error (Map View of File failure)
+N_ERR_NOT_OPEN_MAPFILE -12 Unable to open the file map
+N_ERR_PRTOUTPUT -13 Printer output error
+N_ERR_NONE_PRTLIST -21 There is no printer available.
+N_ERR_NOHANDLE -22 Printer is not opened
+N_ERR_LACKRESOURCE -31 Resource shortage
+N_ERR_NOTSUPPORTED -40 Function is not supported
+N_ERR_LOADFROMFILE -50 Fail to read an image file
+N_ERR_IMAGESIZE -51 Image size is incorrect.
+N_ERR_RESETPRINTER -60 Fali to reset
+N_ERR_ACCESSDENIED -61 Access denied
+N_ERR_DOCNOTSTARTED -71 Document is not in opening status.
+N_ERR_ALREADYSTARTDOC -72 Document has already been opened
+N_ERR_FWFFILE -80 fwf file error
+N_ERR_FWF_CHECKSUM -81 Check sum of fwf file and Check sum obtained from printer dose not accord.
+N_ERR_FWDL_TIMEOUT -82 Firmware download time out (Print start command check is time out.)
+N_ERR_FWCHK_TIMEOUT -83 Firmware check sum verification time out.
+N_ERR_FOUNDERROR -84 Detect an error at status verification on firmware downloading.
+N_ERR_ARGUMENT -90 Argument is not correct
+N_ERR_ARGUMENT_01 -91 1st argument is incorrect.
+N_ERR_ARGUMENT_02 -92 2nd argument is incorrect.
+N_ERR_ARGUMENT_03 -93 3rd argument is incorrect.
+N_ERR_ARGUMENT_04 -94 4th argument is incorrect.
+N_ERR_ARGUMENT_05 -95 5th argument is incorrect
+N_ERR_ARGUMENT_06 -96 6th argument is incorrect.
+N_ERR_ARGUMENT_07 -97 7th argument is incorrect.
+N_ERR_ARGUMENT_08 -98 8th argument is incorrect.
+N_ERR_ARGUMENT_09 -99 9th argument is incorrect.
+N_ERR_SOCKRECV -108 TCP/UDP reception error
+N_ERR_UDPTHREADSTARTED -111 UDP thread has already been started
+N_ERR_UDPTHREADSTOPPED -112 UDP thread is not started
+N_ERR_UDPTHREADSTOP -113 UDP thread is not stopped
+N_ERR_PRTINFO_READ -131 Fail to read a printer information file
+N_ERR_PRTINFO_WRITE -132 Fail to write a printer information file
+N_ERR_PRTNAME_ALLOC -133 Fail to allocate a printer name
+N_ERR_PRTRENAME_BRFORE -134 A printer name before the change does not exist
+N_ERR_PRTRENAME_AFTER -135 A printer name after the change has already been used.
+N_ERR_PRTINFO_DELETE -138 Fail to delete the printer name
+N_ERR_PRTINFO_NOTFOUND -139 The printer name does not exist
+N_ERR_DEVICE_NOTSUPPORT -150 Connection type is not supported
+N_ERR_CREATEBCDDATA -162 Fail to generate a barcode data
+N_ERR_MNT_HEADER -200 Maintenance response header is incorrect.
+N_ERR_FLAGSQR -201 QR flag of maintenance response(Flags) is incorrect
+N_ERR_FLAGSFORMAT -202 Detect a format error at maintenance response(Flags)
+N_ERR_FLAGSBUSY -203 Detect busy at maintenance response(Flags)
+N_ERR_FLAGSUNDEFINED -204 Detect undefined at maintenance response(Flags)
+N_ERR_FLAGSREJECT -205 Detect rejection at maintenance response(Flags)
+N_ERR_FLAGSOTHER -206 Detect other error at maintenance response(Flags)
+N_ERR_MNT_QID -207 Query ID of maintenance response is incorrect
+N_ERR_MNT_QR -208 Preliminary flag of maintenance response is incorrect
+N_ERR_MNT_QPARAM -209 Query parameter of maintenance response is incorrect
+N_ERR_MNT_OTHER -210 There is another error at maintenance response
+N_ERR_OTHER -999 Other error
+N_WRN_PRTALREADYOPEN 10 Printer has already been opened.
+N_WRN_NOTEXITDOC 11 Document does not exist.

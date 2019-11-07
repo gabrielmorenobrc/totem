@@ -1,0 +1,55 @@
+<wicket:panel xmlns="http://wicket.apache.org">
+
+    <div wicket:id="ProgressBar">
+        <div wicket:id="bar"></div>
+    </div>
+
+    <div class="ui grid segment">
+        <div class="ui padded">
+            <div class="ui grid padded">
+                <div class="eleven wide column center blue" style="margin:15px 0px;"><h2>Fecha del Turno</h2></div>
+                <div class="five wide column">
+                    <div class="ui large icon blue button" wicket:id="bck"><i class="chevron left icon"></i></div>
+                    <div class="aligned image middle ui" style="margin: 0rem 4rem;position: relative;top: -15px;">
+                        <label wicket:id="mes"></label> /
+                        <label wicket:id="anio"></label>
+                    </div>
+                    <div class="ui large icon blue button"  style="margin-top:0.75rem;" wicket:id="fwd"><i class="chevron right icon"></i></div>
+                </div>
+            </div>
+        <div class="ui grid seven column align center paddSides15" style="padding-bottom: 2rem; margin-top: 0px;" wicket:id="container">
+            <div class="column" style="padding: 0px;height: 20px;">
+                Domingo
+            </div>
+            <div class="column" style="padding: 0px;height: 20px;">
+                Lunes
+            </div>
+            <div class="column" style="padding: 0px;height: 20px;">
+                Martes
+            </div>
+            <div class="column" style="padding: 0px;height: 20px;">
+                Miércoles
+            </div>
+            <div class="column" style="padding: 0px;height: 20px;">
+                Jueves
+            </div>
+            <div class="column" style="padding: 0px;height: 20px;">
+                Viernes
+            </div>
+            <div class="column" style="padding: 0px;height: 20px;">
+                Sábado
+            </div>
+            <div class="column" wicket:id="cell" onclick="showDimmer();">
+                <div class="content" style="margin-top: -5px;">
+                    <label wicket:id="numeroDia"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        $('#progressbar').progress({total: 8})
+        $('#progressbar').progress({percent: 62});
+    </script>
+</wicket:panel>

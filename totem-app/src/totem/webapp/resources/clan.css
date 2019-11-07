@@ -1,0 +1,76 @@
+
+
+@font-face {
+    font-family: 'clan';
+    src: url('fonts/clanblack.eot');
+    src: url('fonts/clanblack.eot') format('embedded-opentype'),
+         url('fonts/clanblack.woff2') format('woff2'),
+         url('fonts/clanblack.woff') format('woff'),
+         url('fonts/clanblack.ttf') format('truetype'),
+         url('fonts/clanblack.svg#clanblack') format('svg');
+}
+
+
+@font-face {
+    font-family: 'clan';
+    src: url('fonts/clanblack.eot');
+    src: url('fonts/clanblack.eot') format('embedded-opentype'),
+         url('fonts/clanblack.woff2') format('woff2'),
+         url('fonts/clanblack.woff') format('woff'),
+         url('fonts/clanblack.ttf') format('truetype'),
+         url('fonts/clanblack.svg#clanblack') format('svg');
+    font-weight: 900;
+}
+
+
+@font-face {
+    font-family: 'clan';
+    src: url('fonts/clanbold.eot');
+    src: url('fonts/clanbold.eot') format('embedded-opentype'),
+         url('fonts/clanbold.woff2') format('woff2'),
+         url('fonts/clanbold.woff') format('woff'),
+         url('fonts/clanbold.ttf') format('truetype'),
+         url('fonts/clanbold.svg#clanbold') format('svg');
+    font-weight: 600;
+}
+
+
+@font-face {
+    font-family: 'clan';
+    src: url('fonts/clanbook.eot');
+    src: url('fonts/clanbook.eot') format('embedded-opentype'),
+         url('fonts/clanbook.woff2') format('woff2'),
+         url('fonts/clanbook.woff') format('woff'),
+         url('fonts/clanbook.ttf') format('truetype'),
+         url('fonts/clanbook.svg#clanbook') format('svg');
+    font-weight: 200;
+}
+
+
+
+@font-face {
+    font-family: 'clan';
+    src: url('fonts/clanmedium.eot');
+    src: url('fonts/clanmedium.eot') format('embedded-opentype'),
+         url('fonts/clanmedium.woff2') format('woff2'),
+         url('fonts/clanmedium.woff') format('woff'),
+         url('fonts/clanmedium.ttf') format('truetype'),
+         url('fonts/clanmedium.svg#clanmedium') format('svg');
+    font-weight: 400;
+}
+
+
+@font-face {
+    font-family: 'clan';
+    src: url('fonts/clannews.eot');
+    src: url('fonts/clannews.eot') format('embedded-opentype'),
+         url('fonts/clannews.woff2') format('woff2'),
+         url('fonts/clannews.woff') format('woff'),
+         url('fonts/clannews.ttf') format('truetype'),
+         url('fonts/clannews.svg#clannews') format('svg');
+    font-weight: 300;
+}
+
+* :not(i){
+    font-family: 'clan'!important;
+}

@@ -1,0 +1,12 @@
+<beans>
+    <alternatives>
+        <class>totem.service.DevTotemConfig</class>
+        <class>plataforma1.email.SmtpEmailSender</class>
+        <class>plataforma1.email.DummyEmailConfig</class>
+        <class>totem.service.RestTurnosClient</class>
+        <class>totem.service.MockErpClient</class>
+    </alternatives>
+    <interceptors>
+        <class>totem.service.TotemTransactionalInterceptor</class>
+    </interceptors>
+</beans>

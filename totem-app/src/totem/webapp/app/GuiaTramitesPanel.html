@@ -1,0 +1,13 @@
+<wicket:panel>
+    <div class="contenidoTotemScroll max_content_guia">
+
+        <div  id='loading' class="ui active inverted dimmer">
+            <div class="ui large text loader">Cargando</div>
+        </div>
+
+    <iframe id="guiaFrame" width="100%" frameBorder="0" scrolling="no" style="display:none" wicket:id="iframe"
+            src="" onload="stopLoading(); updateScrollingAdvice();"
+            sandbox="allow-pointer-lock allow-same-origin allow-scripts"></iframe>
+    </div>
+
+</wicket:panel>

@@ -1,0 +1,33 @@
+<wicket:panel xmlns="http://wicket.apache.org">
+<form class="ui form mt15" wicket:id="form">
+    <div class="ui centered segment padded grid">
+        <div class="sixteen wide column center blue" ><h2 wicket:id="titulo"></h2></div>
+        <div class="row">
+            <div class="seven wide column center">
+                <label class="ui header large">Ingrese número de documento</label>
+                <div class="field">
+                    <div class="ui input fluid" style="margin-top:1rem;">
+                        <input class="numPadTarget fnt_media_18"  autocomplete="off" type="text"  wicket:id="numero"/>
+                    </div>
+                </div>
+                <div wicket:id="pad"></div>
+            </div>
+
+            <div class="eight wide column center">
+                <label class="ui header large">Seleccione tipo de documento</label>
+                <div class="ui segment selection list" wicket:id="tipos">
+                    <div class="item" style="cursor: pointer;" wicket:id="item">
+                        <button class="fluid ui button huge" wicket:id="label"></button>
+                    </div>
+                </div>
+                <button class="ui positive fluid button massive" wicket:id="buscar" onclick="showDimmer();">
+                    <i class="ui icon check "></i> ACEPTAR
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</form>
+    <div wicket:id="popup" />
+</wicket:panel>

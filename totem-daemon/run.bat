@@ -1,0 +1,1 @@
+java -Djava.util.logging.config.file=logging.properties -Dfile.encoding=UTF-8 -jar totem-daemon.jar

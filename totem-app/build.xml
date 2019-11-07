@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="totem-app" default="all">
+  
+  
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.lib.classpath">
+    <fileset dir="${basedir}/../../lib/asm/3.1">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/cdi-api/1.2.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/commons-codec/1.10">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/commons-collections/3.3.2">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/commons-logging/1.2">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/derby/10.8">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/eclipselink/2.5.2">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/fliyingsaucer/9.0.7">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/freemarker/2.3.20">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/inmethod/6.9.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/itext/5.5.3">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/jackson/2.6.4">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/javamail/1.5.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/jersey/1.5">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/jetty/8.1.15">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/jpa/2.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/json/20160810">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/jsp-api/2.1">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/log4j/1.2.17">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/plataforma/1">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/postgresql/42">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/seam-conversation/3.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/servlet-api/3.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/slf4j/1.7.10">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/weld/2.2.9">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/wicket-jquery/6.27.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/wicket-select2/2.3-es">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/wicket/6.27.1">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/wicketstuff-tinymce-4/6.26.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module totem-app -->
+  
+  <dirname property="module.totem-app.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.totem-app" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="totem-app.output.dir" value="${module.totem-app.basedir}/out/production/totem-app"/>
+  <property name="totem-app.testoutput.dir" value="${module.totem-app.basedir}/out/test/totem-app"/>
+  
+  <path id="totem-app.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="totem-app.module.production.classpath">
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="totem-app.runtime.production.module.classpath">
+    <pathelement location="${totem-app.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="totem-app.module.classpath">
+    <pathelement location="${totem-app.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="totem-app.runtime.module.classpath">
+    <pathelement location="${totem-app.testoutput.dir}"/>
+    <pathelement location="${totem-app.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.totem-app">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.totem-app">
+    <patternset refid="excluded.from.module.totem-app"/>
+  </patternset>
+  
+  <path id="totem-app.module.sourcepath">
+    <dirset dir="${module.totem-app.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.totem-app" depends="compile.module.totem-app.production,compile.module.totem-app.tests" description="Compile module totem-app"/>
+  
+  <target name="compile.module.totem-app.production" description="Compile module totem-app; production classes">
+    <mkdir dir="${totem-app.output.dir}"/>
+    <javac destdir="${totem-app.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.totem-app}"/>
+      <bootclasspath refid="totem-app.module.bootclasspath"/>
+      <classpath refid="totem-app.module.production.classpath"/>
+      <src refid="totem-app.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.totem-app"/>
+    </javac>
+    
+    <copy todir="${totem-app.output.dir}">
+      <fileset dir="${module.totem-app.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.totem-app.tests" depends="compile.module.totem-app.production" description="compile module totem-app; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.totem-app" description="cleanup module">
+    <delete dir="${totem-app.output.dir}"/>
+    <delete dir="${totem-app.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.totem-app" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.totem-app" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
+</project>

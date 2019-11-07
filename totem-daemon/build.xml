@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="totem-daemon" default="all">
+  
+  
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.lib.classpath">
+    <fileset dir="${basedir}/../../lib/jackson/2.6.4">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/jetty/8.1.15">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/jna/5.0.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/servlet-api/3.0">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <fileset dir="${basedir}/../../lib/slf4j/1.7.10">
+      <patternset refid="library.patterns"/>
+    </fileset>
+    <pathelement location="${basedir}/../../lib/jersey/1.5/jersey-client-1.5.jar"/>
+    <pathelement location="${basedir}/../../lib/jersey/1.5/jersey-core-1.5.jar"/>
+    <pathelement location="${basedir}/../../lib/jersey/1.5/jersey-json-1.5.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module totem-daemon -->
+  
+  <dirname property="module.totem-daemon.basedir" file="${ant.file}"/>
+  
+  
+  
+  <property name="compiler.args.totem-daemon" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="totem-daemon.output.dir" value="${module.totem-daemon.basedir}/out/production/totem-daemon"/>
+  <property name="totem-daemon.testoutput.dir" value="${module.totem-daemon.basedir}/out/test/totem-daemon"/>
+  
+  <path id="totem-daemon.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="totem-daemon.module.production.classpath">
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="totem-daemon.runtime.production.module.classpath">
+    <pathelement location="${totem-daemon.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="totem-daemon.module.classpath">
+    <pathelement location="${totem-daemon.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  <path id="totem-daemon.runtime.module.classpath">
+    <pathelement location="${totem-daemon.testoutput.dir}"/>
+    <pathelement location="${totem-daemon.output.dir}"/>
+    <path refid="library.lib.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.totem-daemon">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.totem-daemon">
+    <patternset refid="excluded.from.module.totem-daemon"/>
+  </patternset>
+  
+  <path id="totem-daemon.module.sourcepath">
+    <dirset dir="${module.totem-daemon.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.totem-daemon" depends="compile.module.totem-daemon.production,compile.module.totem-daemon.tests" description="Compile module totem-daemon"/>
+  
+  <target name="compile.module.totem-daemon.production" description="Compile module totem-daemon; production classes">
+    <mkdir dir="${totem-daemon.output.dir}"/>
+    <javac destdir="${totem-daemon.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.totem-daemon}"/>
+      <bootclasspath refid="totem-daemon.module.bootclasspath"/>
+      <classpath refid="totem-daemon.module.production.classpath"/>
+      <src refid="totem-daemon.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.totem-daemon"/>
+    </javac>
+    
+    <copy todir="${totem-daemon.output.dir}">
+      <fileset dir="${module.totem-daemon.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.totem-daemon.tests" depends="compile.module.totem-daemon.production" description="compile module totem-daemon; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.totem-daemon" description="cleanup module">
+    <delete dir="${totem-daemon.output.dir}"/>
+    <delete dir="${totem-daemon.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.totem-daemon, clean.artifact.totem-daemon:jar" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.totem-daemon" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.totem-daemon:jar" value="${basedir}/out/artifacts/totem_daemon_jar"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.totem-daemon.jar" value="${artifacts.temp.dir}/totem-daemon.jar"/>
+  </target>
+  
+  <target name="clean.artifact.totem-daemon:jar" description="clean totem-daemon:jar artifact output">
+    <delete dir="${artifact.output.totem-daemon:jar}"/>
+  </target>
+  
+  <target name="artifact.totem-daemon:jar" depends="init.artifacts, compile.module.totem-daemon" description="Build &#39;totem-daemon:jar&#39; artifact">
+    <mkdir dir="${artifact.output.totem-daemon:jar}"/>
+    <jar destfile="${temp.jar.path.totem-daemon.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${totem-daemon.output.dir}"/>
+    </jar>
+    <copy file="${temp.jar.path.totem-daemon.jar}" tofile="${artifact.output.totem-daemon:jar}/totem-daemon.jar"/>
+    <copy file="${basedir}/../../lib/servlet-api/3.0/servlet-api-3.0.jar" tofile="${artifact.output.totem-daemon:jar}/servlet-api-3.0.jar"/>
+    <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-api-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-api-1.7.10.jar"/>
+    <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-simple-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-simple-1.7.10.jar"/>
+    <copy file="${basedir}/../../lib/jersey/1.5/jersey-client-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-client-1.5.jar"/>
+    <copy file="${basedir}/../../lib/jersey/1.5/jersey-core-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-core-1.5.jar"/>
+    <copy file="${basedir}/../../lib/jersey/1.5/jersey-json-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-json-1.5.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-io-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-io-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-ajp-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-ajp-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-jmx-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-jmx-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-xml-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-xml-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-http-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-http-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-jndi-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-jndi-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-plus-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-plus-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-util-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-util-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-client-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-client-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-deploy-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-deploy-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-policy-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-policy-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-server-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-server-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-webapp-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-webapp-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-rewrite-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-rewrite-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-servlet-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-servlet-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-security-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-security-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-servlets-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-servlets-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-websocket-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-websocket-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-annotations-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-annotations-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-continuation-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-continuation-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-overlay-deployer-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-overlay-deployer-8.1.15.v20140411.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-core-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-core-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-databind-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-databind-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-jaxrs-base-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-jaxrs-base-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-annotations-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-annotations-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-jaxrs-json-provider-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-jaxrs-json-provider-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-module-jaxb-annotations-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-module-jaxb-annotations-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jna/5.0.0/jna-5.0.0.jar" tofile="${artifact.output.totem-daemon:jar}/jna-5.0.0.jar"/>
+    <copy file="${basedir}/../../lib/jna/5.0.0/jna-platform-5.0.0.jar" tofile="${artifact.output.totem-daemon:jar}/jna-platform-5.0.0.jar"/>
+    <copy file="${basedir}/NPrinterLib.dll" tofile="${artifact.output.totem-daemon:jar}/NPrinterLib.dll"/>
+    <ant antfile="" target="null" dir="">
+      <property name="artifact.output.path" value="${artifact.output.totem-daemon:jar}"/>
+    </ant>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.totem-daemon:jar" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

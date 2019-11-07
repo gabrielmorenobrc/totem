@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Class-Path: servlet-api-3.0.jar slf4j-api-1.7.10.jar slf4j-simple-1.7.
+ 10.jar jersey-client-1.5.jar jersey-core-1.5.jar jersey-json-1.5.jar 
+ jetty-io-8.1.15.v20140411.jar jetty-ajp-8.1.15.v20140411.jar jetty-jm
+ x-8.1.15.v20140411.jar jetty-xml-8.1.15.v20140411.jar jetty-http-8.1.
+ 15.v20140411.jar jetty-jndi-8.1.15.v20140411.jar jetty-plus-8.1.15.v2
+ 0140411.jar jetty-util-8.1.15.v20140411.jar jetty-client-8.1.15.v2014
+ 0411.jar jetty-deploy-8.1.15.v20140411.jar jetty-policy-8.1.15.v20140
+ 411.jar jetty-server-8.1.15.v20140411.jar jetty-webapp-8.1.15.v201404
+ 11.jar jetty-rewrite-8.1.15.v20140411.jar jetty-servlet-8.1.15.v20140
+ 411.jar jetty-security-8.1.15.v20140411.jar jetty-servlets-8.1.15.v20
+ 140411.jar jetty-websocket-8.1.15.v20140411.jar jetty-annotations-8.1
+ .15.v20140411.jar jetty-continuation-8.1.15.v20140411.jar jetty-overl
+ ay-deployer-8.1.15.v20140411.jar jackson-core-2.6.4.jar jackson-datab
+ ind-2.6.4.jar jackson-jaxrs-base-2.6.4.jar jackson-annotations-2.6.4.
+ jar jackson-jaxrs-json-provider-2.6.4.jar jackson-module-jaxb-annotat
+ ions-2.6.4.jar jna-5.0.0.jar jna-platform-5.0.0.jar
+Main-Class: totem.daemon.Launcher
+

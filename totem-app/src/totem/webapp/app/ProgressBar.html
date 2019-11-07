@@ -1,0 +1,21 @@
+<wicket:panel>
+<div class="ui grid segment paddSides15">
+    <div class="row">
+        <!--un solo progress bar -->
+        <div style="margin-bottom: 0px; border-radius:0px" class="center label fluid segment blue ui">
+            <h2 wicket:id="titulo"></h2>
+        </div>
+
+        <div class="ui progress small" style="width:100%; margin: 10px 0px 0px 0px;" id="progressbar">
+            <div class="bar">
+            </div>
+        </div>
+    </div>
+
+    <div wicket:id="cantidadColumnas">
+        <div class="column" wicket:id="column">
+            <div class="label center" wicket:id="title"></div>
+        </div>
+    </div>
+</div>
+</wicket:panel>

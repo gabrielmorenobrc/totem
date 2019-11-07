@@ -1,0 +1,70 @@
+<project name="daemon">
+
+    <import file="build.xml"/>
+
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+        <include name="**/?*.css"/>
+        <include name="**/?*.js"/>
+        <include name="**/?*.svg"/>
+        <include name="**/?*.woff"/>
+        <include name="**/?*.ttf"/>
+        <include name="**/?*.gif"/>
+        <include name="**/?*.png"/>
+        <include name="**/?*.xml"/>
+        <include name="**/?*.html"/>
+        <include name="**/?*.json"/>
+        <include name="**/?*.woff2"/>
+        <include name="**/?*.eot"/>
+        <include name="**/?*.otf"/>
+    </patternset>
+
+
+
+    <target name="--deploy" description="deploy" >
+
+        <property name="deployment" value="totem-daemon" />
+
+        <delete dir="dist/totem-daemon" failonerror="true" />
+
+        <copy todir="dist/totem-daemon" >
+            <fileset dir="out/artifacts/totem_daemon_jar"></fileset>
+        </copy>
+
+        <copy todir="dist/totem-daemon" >
+            <file file="commons-daemon/${platform}/prunsrv.exe"></file>
+            <file file="commons-daemon/prunmgr.exe"></file>
+        </copy>
+
+        <copy todir="dist/totem-daemon" >
+            <file file="NPrinterLib.dll"></file>
+        </copy>
+
+        <copy todir="dist/totem-daemon" >
+            <file file="service-install.bat"></file>
+            <file file="run.bat"></file>
+            <file file="start.bat"></file>
+            <file file="logging.properties"></file>
+        </copy>
+        <copy file="sfx.conf" tofile="dist/sfx.conf"></copy>
+        <exec dir="dist" command="rar a -ep totem-daemon-${platform}.zip totem-daemon/*"></exec>
+        <exec dir="dist" command='rar s -z"sfx.conf" totem-daemon-${platform}.zip'></exec>
+
+        <!--zip basedir="dist/totem-daemon" destfile="dist/totem-daemon-${platform}.zip" /-->
+    </target>
+
+    <target name="deploy-w64" description="deploy">
+        <property name="platform" value="x64"></property>
+        <antcall target="--deploy" />
+        <copy todir="dist" file="sfx.conf"></copy>
+
+    </target>
+
+</project>

@@ -1,0 +1,19 @@
+<wicket:panel xmlns="http://wicket.apache.org">
+    <div wicket:id="ProgressBar">
+        <div wicket:id="bar"></div>
+    </div>
+
+    <div class="ui grid five column align center padded segment centered" wicket:id="container">
+        <div class="sixteen wide column center blue mb15"><h2>Hora del Turno</h2></div>
+        <div class="column" style="height: 48px; margin:1px 5px 1px 0px !important;padding-top: 1em;padding-bottom: 1em;" wicket:id="cell">
+            <div class="content">
+                <label wicket:id="horario"></label>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $('#progressbar').progress({total: 8})
+        $('#progressbar').progress({percent: 75});
+    </script>
+</wicket:panel>

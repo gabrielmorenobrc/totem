@@ -1,0 +1,31 @@
+<wicket:panel>
+    <div wicket:id="ProgressBar">
+        <div wicket:id="bar"></div>
+    </div>
+        <div class="max_content" wicket:id="turnos">
+            <div class="ui centered segment padded grid">
+                <div class="row">
+                    <div class="eight wide column center">
+                        <h1 class="ui header">Turnos asignados</h1>
+                        <div class="paddMainTitlePanel" wicket:id="item">
+                            <button class="ui blue button huge peso300 fluid-90" wicket:id="link" onclick="showDimmer();">
+                                <span wicket:id="label"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="eight wide column center" wicket:id="otro" onclick="showDimmer();" >
+                        <h1 class="ui header">Nuevo turno presencial</h1>
+                        <div class="paddMainTitlePanel">
+                             <button class="ui blue button huge peso300 fluid-90" wicket:id="link"  onclick="showDimmer();">Solicitar turno</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script>
+      $('#progressbar').progress({total: 3})
+      $('#progressbar').progress('increment');
+    </script>
+</wicket:panel>
+
+

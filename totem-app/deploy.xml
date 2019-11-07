@@ -1,0 +1,87 @@
+<project name="totem">
+
+    <import file="build.xml"/>
+
+    <patternset id="compiler.resources">
+        <exclude name="**/?*.java"/>
+        <exclude name="**/?*.form"/>
+        <exclude name="**/?*.class"/>
+        <exclude name="**/?*.groovy"/>
+        <exclude name="**/?*.scala"/>
+        <exclude name="**/?*.flex"/>
+        <exclude name="**/?*.kt"/>
+        <exclude name="**/?*.clj"/>
+        <include name="**/?*.css"/>
+        <include name="**/?*.js"/>
+        <include name="**/?*.svg"/>
+        <include name="**/?*.woff"/>
+        <include name="**/?*.ttf"/>
+        <include name="**/?*.gif"/>
+        <include name="**/?*.png"/>
+        <include name="**/?*.xml"/>
+        <include name="**/?*.html"/>
+        <include name="**/?*.xhtml"/>
+        <include name="**/?*.json"/>
+        <include name="**/?*.woff2"/>
+        <include name="**/?*.eot"/>
+        <include name="**/?*.otf"/>
+        <include name="**/?*.jpg"/>
+    </patternset>
+
+    <target name="--deploy-src" description="deploy standalone">
+
+
+        <copy todir="out/production/totem-app/META-INF" failonerror="true">
+            <fileset dir="src/META-INF" excludes="beans*.*"></fileset>
+        </copy>
+    </target>
+
+
+    <target name="--deploy-webapp" depends="all" description="deploy webapp">
+
+        <property name="deployment" value="totem-${env}" />
+        <property name="bda" value="beans-${env}.xml" />
+
+        <delete dir="dist/totem-app-${deployment}" failonerror="true" />
+
+        <antcall target="--deploy-src"></antcall>
+
+        <copy tofile="out/production/totem-app/META-INF/beans.xml" file="src/META-INF/${bda}" overwrite="true" />
+
+        <zip destfile="dist/${deployment}/WEB-INF/lib/totem.jar"
+             basedir="out/production/totem-app"/>
+
+        <copy todir="dist/${deployment}/WEB-INF/lib">
+            <path refid="library.lib.classpath"></path>
+        </copy>
+
+        <copy todir="dist/${deployment}/WEB-INF" file="webapp/WEB-INF/web.xml">
+        </copy>
+
+        <zip basedir="dist/${deployment}" destfile="dist/${deployment}.zip" />
+    </target>
+
+    <target name="deploy-prod" description="deploy prod">
+        <delete dir="out/production/totem-app" failonerror="true" />
+        <property name="env" value="prod" />
+        <antcall target="--deploy-webapp" />
+    </target>
+
+    <target name="deploy-test" description="deploy test">
+        <delete dir="out/production/totem-app" failonerror="true" />
+        <property name="env" value="test" />
+        <antcall target="--deploy-webapp" />
+    </target>
+
+    <target name="deploy-dev" description="deploy dev">
+        <delete dir="out/production/totem-app" failonerror="true" />
+        <property name="env" value="dev" />
+        <antcall target="--deploy-webapp" />
+    </target>
+
+    <target name="deploy-dev-domo" description="deploy dev domo">
+        <delete dir="out/production/totem-app" failonerror="true" />
+        <property name="env" value="dev-domo" />
+        <antcall target="--deploy-webapp" />
+    </target>
+</project>

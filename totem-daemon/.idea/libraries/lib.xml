@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../lib/servlet-api/3.0" />
+      <root url="file://$PROJECT_DIR$/../../lib/slf4j/1.7.10" />
+      <root url="jar://$PROJECT_DIR$/../../lib/jersey/1.5/jersey-client-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../lib/jersey/1.5/jersey-core-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../lib/jersey/1.5/jersey-json-1.5.jar!/" />
+      <root url="file://$PROJECT_DIR$/../../lib/jetty/8.1.15" />
+      <root url="file://$PROJECT_DIR$/../../lib/jackson/2.6.4" />
+      <root url="file://$PROJECT_DIR$/../../lib/jna/5.0.0" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../lib/jackson/2.6.4" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../lib/jetty/8.1.15" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../lib/jna/5.0.0" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../lib/servlet-api/3.0" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../../lib/slf4j/1.7.10" recursive="false" />
+  </library>
+</component>

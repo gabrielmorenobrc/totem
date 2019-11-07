@@ -1,0 +1,19 @@
+<wicket:panel>
+    <div wicket:id="ProgressBar">
+        <div wicket:id="bar"></div>
+    </div>
+
+    <div class="ui centered segment padded grid" wicket:id="list">
+        <div class="sixteen wide column center blue  "><h2>Sedes</h2></div>
+        <div class="eight wide column center paddMainTitlePanel" wicket:id="item">
+            <button class="ui blue button huge peso300 fluid-90" wicket:id="link" onclick="showDimmer();">
+                <span wicket:id="label"></span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        $('#progressbar').progress({total: 8})
+        $('#progressbar').progress({percent: 50});
+    </script>
+</wicket:panel>

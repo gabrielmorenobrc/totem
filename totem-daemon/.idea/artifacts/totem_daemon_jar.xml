@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact name="totem-daemon:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/totem_daemon_jar</output-path>
+    <root id="root">
+      <element id="archive" name="totem-daemon.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/../artifact/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="totem-daemon" />
+      </element>
+      <element id="library" level="project" name="lib" />
+    </root>
+  </artifact>
+</component>
