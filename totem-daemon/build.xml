@@ -2,7 +2,7 @@
 <project name="totem-daemon" default="all">
   
   
-  <!-- Uncomment the following property if no tests compilation is needed -->
+    <!-- Uncomment the following property if no tests compilation is needed -->
   <!-- 
   <property name="skip.tests" value="true"/>
    -->
@@ -31,14 +31,15 @@
     <exclude name="**/vssver2.scc/**"/>
   </patternset>
   <patternset id="library.patterns">
-    <include name="*.war"/>
-    <include name="*.swc"/>
-    <include name="*.apk"/>
-    <include name="*.zip"/>
     <include name="*.egg"/>
-    <include name="*.ane"/>
     <include name="*.jar"/>
     <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.klib"/>
+    <include name="*.apk"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
   </patternset>
   <patternset id="compiler.resources">
     <exclude name="**/?*.java"/>
@@ -85,7 +86,7 @@
   
   
   
-  <property name="compiler.args.totem-daemon" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  <property name="compiler.args.totem-daemon" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
   
   <property name="totem-daemon.output.dir" value="${module.totem-daemon.basedir}/out/production/totem-daemon"/>
   <property name="totem-daemon.testoutput.dir" value="${module.totem-daemon.basedir}/out/test/totem-daemon"/>
@@ -179,15 +180,19 @@
   <target name="artifact.totem-daemon:jar" depends="init.artifacts, compile.module.totem-daemon" description="Build &#39;totem-daemon:jar&#39; artifact">
     <mkdir dir="${artifact.output.totem-daemon:jar}"/>
     <jar destfile="${temp.jar.path.totem-daemon.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset file="${basedir}/../artifact/META-INF/MANIFEST.MF" prefix="META-INF"/>
       <zipfileset dir="${totem-daemon.output.dir}"/>
     </jar>
     <copy file="${temp.jar.path.totem-daemon.jar}" tofile="${artifact.output.totem-daemon:jar}/totem-daemon.jar"/>
-    <copy file="${basedir}/../../lib/servlet-api/3.0/servlet-api-3.0.jar" tofile="${artifact.output.totem-daemon:jar}/servlet-api-3.0.jar"/>
-    <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-api-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-api-1.7.10.jar"/>
-    <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-simple-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-simple-1.7.10.jar"/>
     <copy file="${basedir}/../../lib/jersey/1.5/jersey-client-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-client-1.5.jar"/>
     <copy file="${basedir}/../../lib/jersey/1.5/jersey-core-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-core-1.5.jar"/>
     <copy file="${basedir}/../../lib/jersey/1.5/jersey-json-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-json-1.5.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-core-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-core-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-databind-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-databind-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-jaxrs-base-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-jaxrs-base-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-annotations-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-annotations-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-jaxrs-json-provider-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-jaxrs-json-provider-2.6.4.jar"/>
+    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-module-jaxb-annotations-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-module-jaxb-annotations-2.6.4.jar"/>
     <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-io-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-io-8.1.15.v20140411.jar"/>
     <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-ajp-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-ajp-8.1.15.v20140411.jar"/>
     <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-jmx-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-jmx-8.1.15.v20140411.jar"/>
@@ -209,18 +214,11 @@
     <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-annotations-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-annotations-8.1.15.v20140411.jar"/>
     <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-continuation-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-continuation-8.1.15.v20140411.jar"/>
     <copy file="${basedir}/../../lib/jetty/8.1.15/jetty-overlay-deployer-8.1.15.v20140411.jar" tofile="${artifact.output.totem-daemon:jar}/jetty-overlay-deployer-8.1.15.v20140411.jar"/>
-    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-core-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-core-2.6.4.jar"/>
-    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-databind-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-databind-2.6.4.jar"/>
-    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-jaxrs-base-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-jaxrs-base-2.6.4.jar"/>
-    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-annotations-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-annotations-2.6.4.jar"/>
-    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-jaxrs-json-provider-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-jaxrs-json-provider-2.6.4.jar"/>
-    <copy file="${basedir}/../../lib/jackson/2.6.4/jackson-module-jaxb-annotations-2.6.4.jar" tofile="${artifact.output.totem-daemon:jar}/jackson-module-jaxb-annotations-2.6.4.jar"/>
     <copy file="${basedir}/../../lib/jna/5.0.0/jna-5.0.0.jar" tofile="${artifact.output.totem-daemon:jar}/jna-5.0.0.jar"/>
-    <copy file="${basedir}/../../lib/jna/5.0.0/jna-platform-5.0.0.jar" tofile="${artifact.output.totem-daemon:jar}/jna-platform-5.0.0.jar"/>
-    <copy file="${basedir}/NPrinterLib.dll" tofile="${artifact.output.totem-daemon:jar}/NPrinterLib.dll"/>
-    <ant antfile="" target="null" dir="">
-      <property name="artifact.output.path" value="${artifact.output.totem-daemon:jar}"/>
-    </ant>
+    <copy file="${basedir}/../../lib/jna/5.0.0/jna-platform-5.5.0.jar" tofile="${artifact.output.totem-daemon:jar}/jna-platform-5.5.0.jar"/>
+    <copy file="${basedir}/../../lib/servlet-api/3.0/servlet-api-3.0.jar" tofile="${artifact.output.totem-daemon:jar}/servlet-api-3.0.jar"/>
+    <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-api-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-api-1.7.10.jar"/>
+    <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-simple-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-simple-1.7.10.jar"/>
   </target>
   
   <target name="build.all.artifacts" depends="artifact.totem-daemon:jar" description="Build all artifacts">

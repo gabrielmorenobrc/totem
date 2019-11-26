@@ -2,7 +2,7 @@
 <project name="totem-app" default="all">
   
   
-  <!-- Uncomment the following property if no tests compilation is needed -->
+    <!-- Uncomment the following property if no tests compilation is needed -->
   <!-- 
   <property name="skip.tests" value="true"/>
    -->
@@ -31,14 +31,15 @@
     <exclude name="**/vssver2.scc/**"/>
   </patternset>
   <patternset id="library.patterns">
-    <include name="*.war"/>
-    <include name="*.swc"/>
-    <include name="*.apk"/>
-    <include name="*.zip"/>
     <include name="*.egg"/>
-    <include name="*.ane"/>
     <include name="*.jar"/>
     <include name="*.ear"/>
+    <include name="*.ane"/>
+    <include name="*.klib"/>
+    <include name="*.apk"/>
+    <include name="*.swc"/>
+    <include name="*.war"/>
+    <include name="*.zip"/>
   </patternset>
   <patternset id="compiler.resources">
     <exclude name="**/?*.java"/>
@@ -134,13 +135,7 @@
     <fileset dir="${basedir}/../../lib/wicket-jquery/6.27.0">
       <patternset refid="library.patterns"/>
     </fileset>
-    <fileset dir="${basedir}/../../lib/wicket-select2/2.3-es">
-      <patternset refid="library.patterns"/>
-    </fileset>
     <fileset dir="${basedir}/../../lib/wicket/6.27.1">
-      <patternset refid="library.patterns"/>
-    </fileset>
-    <fileset dir="${basedir}/../../lib/wicketstuff-tinymce-4/6.26.0">
       <patternset refid="library.patterns"/>
     </fileset>
   </path>
@@ -154,7 +149,7 @@
   
   
   
-  <property name="compiler.args.totem-app" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  <property name="compiler.args.totem-app" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
   
   <property name="totem-app.output.dir" value="${module.totem-app.basedir}/out/production/totem-app"/>
   <property name="totem-app.testoutput.dir" value="${module.totem-app.basedir}/out/test/totem-app"/>
