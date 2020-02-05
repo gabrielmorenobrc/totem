@@ -21,7 +21,7 @@ public class TurnoConfirmadoPanel extends TotemPanel {
         add(new Label("tipoDocumento", sessionData.getTipoDocumentoInfo()));
         add(new Label("numeroDocumento", sessionData.getNumeroDocumento()));
         add(new Label("fecha",  sessionData.getDiaInfo().getDia().toString() + "/" + sessionData.getDiaInfo().getMes().toString() + "/" + sessionData.getDiaInfo().getAnio().toString()));
-        add(new Label("hora", sessionData.getHorarioInfo().getHora().toString()  + ":" + sessionData.getHorarioInfo().getMinutos().toString()));
+        add(new Label("hora", sessionData.getHorarioInfo().getHora().toString()  + ":" + (sessionData.getHorarioInfo().getMinutos() == 0 ? "00" : sessionData.getHorarioInfo().getMinutos().toString())));
         add(new Label("sede", sessionData.getSedeInfo().getDescripcion()));
     }
 
