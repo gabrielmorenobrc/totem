@@ -71,23 +71,7 @@ $(function () {
     });
 });
 
-function setupConfig(callbackUrl) {
-    Wicket.Ajax.post({u: callbackUrl + "&idSede=025"});
-    /**
-     $.ajax({
-            url: "http://localhost:5987/config",
-            method: "GET",
-            headers: {"Access-Control-Allow-Origin": "*"},
-            timeout: 10000
-        }
-     ).done(function (data) {
-        Wicket.Ajax.post({u: callbackUrl + "&idSede=" + data});
-    }).fail(function error (data) {
-        console.log(data)
-        Wicket.Ajax.post({u: callbackUrl + "&error=" + data});
-    });
-     **/
-}
+
 
 
 function showDimmer() {

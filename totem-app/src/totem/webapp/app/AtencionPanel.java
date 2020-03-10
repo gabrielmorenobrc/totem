@@ -20,7 +20,6 @@ public class AtencionPanel extends TotemPanel {
         super(id);
         setOutputMarkupId(true);
         addIdentificacion();
-        sessionData.setIdSede("025");
     }
 
     private void addIdentificacion() {

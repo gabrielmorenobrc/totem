@@ -13,7 +13,6 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.util.ListModel;
-import totem.service.ErpClient;
 import totem.service.TipoDocumentoInfo;
 import totem.service.TotemService;
 
@@ -27,8 +26,6 @@ public class IdentificacionPanel extends Panel {
     private PopupPanel popup;
     @Inject
     private SessionData sessionData;
-    @Inject
-    private ErpClient erpClient;
     private String titulo;
     private final Callback callback;
     private WebMarkupContainer tiposContainer;

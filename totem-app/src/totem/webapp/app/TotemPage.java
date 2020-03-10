@@ -11,8 +11,10 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.cycle.RequestCycle;
+import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.CssResourceReference;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
+import org.apache.wicket.util.string.StringValue;
 import plataforma1.wicket.semantic.NotifierProvider;
 import plataforma1.wicket.semantic.SemanticResourceReference;
 import totem.service.SedeInfo;
@@ -37,21 +39,23 @@ public class TotemPage extends WebPage {
     @Inject
     private NotifierProvider notifierProvider;
 
-    public TotemPage(
-
-    ){
+    public TotemPage(PageParameters pageParameters){
         setVersioned(false);
+        String idSede = pageParameters.get("idSede").toString();
+        sessionData.setIdSede(idSede);
+        SedeInfo sedeInfo = totemService.findSedeInfo(sessionData.getIdSede());
+        nombreSedeModel = new Model<>("");
+        nombreSedeModel.setObject(sedeInfo.getDescripcion());
         notifierProvider.createNotifier(this, "notifier");
         sessionData.setSelectedMenu("atencion");
-        addTitle();
         addSetup();
+        addTitle();
         addMenu();
         addContenido();
         addAtencion();
     }
 
     private void addTitle() {
-        nombreSedeModel = new Model<>("");
         nombreSedeLabel = new Label("nombreSede", nombreSedeModel);
         nombreSedeLabel.setOutputMarkupId(true);
         add(nombreSedeLabel);
