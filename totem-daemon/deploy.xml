@@ -24,6 +24,7 @@
         <include name="**/?*.woff2"/>
         <include name="**/?*.eot"/>
         <include name="**/?*.otf"/>
+        <include name="**/?*.txt"/>
     </patternset>
 
 

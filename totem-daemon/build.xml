@@ -2,7 +2,8 @@
 <project name="totem-daemon" default="all">
   
   
-    <!-- Uncomment the following property if no tests compilation is needed -->
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
   <!-- 
   <property name="skip.tests" value="true"/>
    -->
@@ -34,12 +35,11 @@
     <include name="*.egg"/>
     <include name="*.jar"/>
     <include name="*.ear"/>
-    <include name="*.ane"/>
     <include name="*.klib"/>
-    <include name="*.apk"/>
     <include name="*.swc"/>
     <include name="*.war"/>
     <include name="*.zip"/>
+    <include name="*.ane"/>
   </patternset>
   <patternset id="compiler.resources">
     <exclude name="**/?*.java"/>
@@ -179,11 +179,9 @@
   
   <target name="artifact.totem-daemon:jar" depends="init.artifacts, compile.module.totem-daemon" description="Build &#39;totem-daemon:jar&#39; artifact">
     <mkdir dir="${artifact.output.totem-daemon:jar}"/>
-    <jar destfile="${temp.jar.path.totem-daemon.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
-      <zipfileset file="${basedir}/../artifact/META-INF/MANIFEST.MF" prefix="META-INF"/>
+    <jar destfile="${temp.jar.path.totem-daemon.jar}" duplicate="preserve" manifest="${basedir}/src/META-INF/MANIFEST.MF">
       <zipfileset dir="${totem-daemon.output.dir}"/>
     </jar>
-    <copy file="${temp.jar.path.totem-daemon.jar}" tofile="${artifact.output.totem-daemon:jar}/totem-daemon.jar"/>
     <copy file="${basedir}/../../lib/jersey/1.5/jersey-client-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-client-1.5.jar"/>
     <copy file="${basedir}/../../lib/jersey/1.5/jersey-core-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-core-1.5.jar"/>
     <copy file="${basedir}/../../lib/jersey/1.5/jersey-json-1.5.jar" tofile="${artifact.output.totem-daemon:jar}/jersey-json-1.5.jar"/>
@@ -219,6 +217,7 @@
     <copy file="${basedir}/../../lib/servlet-api/3.0/servlet-api-3.0.jar" tofile="${artifact.output.totem-daemon:jar}/servlet-api-3.0.jar"/>
     <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-api-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-api-1.7.10.jar"/>
     <copy file="${basedir}/../../lib/slf4j/1.7.10/slf4j-simple-1.7.10.jar" tofile="${artifact.output.totem-daemon:jar}/slf4j-simple-1.7.10.jar"/>
+    <copy file="${temp.jar.path.totem-daemon.jar}" tofile="${artifact.output.totem-daemon:jar}/totem-daemon.jar"/>
   </target>
   
   <target name="build.all.artifacts" depends="artifact.totem-daemon:jar" description="Build all artifacts">
