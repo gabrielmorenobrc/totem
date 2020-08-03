@@ -75,11 +75,11 @@ $(function () {
 
 
 function showDimmer() {
-    $('.dimmer').addClass('active');
+    $('.inverted.dimmer').addClass('active');
 }
 
 function hideDimmer() {
-    $('.dimmer').removeClass('active');
+    $('.inverted.dimmer').removeClass('active');
 }
 
 function adviceDown() {
@@ -166,24 +166,88 @@ function updateScrollingAdvice() {
     });
 }
 
+var UltimoTicket ;
+var intentos = 0 ;
+
 function printTicket(ticketData) {
+    UltimoTicket = ticketData;
     $.post( "http://localhost:5987/ticket", ticketData)
         .done(function( data )
         {
-            obj = JSON.parse(data);
-        }).fail( function(data)
-        {
-            alert(data);
+            if(data.ok){
+                setUpProgress();
+            }else {
+                if(intentos < 3){
+                    $('#modalImpresion').modal({closable: false}).modal('show');
+                    intentos = intentos + 1;
+                }else {
+                    $('#modalErrorImpresion').modal({closable: false}).modal('show');
+                    intentos = 0;
+                }
+            }
+        }).fail( function(data) {
+            if(intentos < 3){
+                $('#modalImpresion').modal({closable: false}).modal('show');
+                intentos = intentos + 1;
+            }else {
+                $('#modalErrorImpresion').modal({closable: false}).modal('show');
+                intentos = 0;
+            }
+            intentos = intentos + 1;
         });
-
-    setTimeout(function()
-    {
-        var sede = window.location.href.split("&")[1];
-        var uri = window.location.href.split("?")[0];
-        document.location.href=uri+"?"+sede;
-    }, 5000);
 }
-
+function reprintTicket() {
+    $.post( "http://localhost:5987/ticket", UltimoTicket)
+        .done(function( data )
+        {
+            if(data.ok){
+                setUpProgress();
+            }else {
+                if(intentos < 3){
+                    $('#modalImpresion').modal({closable: false}).modal('show');
+                    intentos = intentos + 1;
+                }else {
+                    $('#modalErrorImpresion').modal({closable: false}).modal('show');
+                    intentos = 0;
+                }
+            }
+        }).fail( function(data){
+            if(intentos < 3){
+                $('#modalImpresion').modal({closable: false}).modal('show');
+                intentos = intentos + 1;
+            }else {
+                $('#modalErrorImpresion').modal({closable: false}).modal('show');
+                intentos = 0;
+            }
+    });
+}
+function toHome() {
+    var sede = window.location.href.split("&")[1];
+    var uri = window.location.href.split("?")[0];
+    document.location.href=uri+"?"+sede;
+}
+function setUpProgress() {
+    $('#anularBotones').addClass('active');
+    var  $progress       = $('.ui.progress'),updateEvent;
+    $progress.progress('set active');
+    $progress.progress({
+        duration : 200,
+        total    : 200,
+        text     : {
+            active: 'Procesando'
+        }
+    });
+    console.info($progress.progress('is complete')[0]);
+    window.fakeProgress = setInterval(function() {
+        $progress.progress('increment');
+        // stop incrementing when complete
+        if($progress.progress('is complete')[1]) {
+            clearInterval(window.fakeProgress)
+            $('#anularBotones').removeClass('active');
+            toHome()
+        }
+    }, 25);
+}
 
 
 function printTicketOnline(ticketData) {

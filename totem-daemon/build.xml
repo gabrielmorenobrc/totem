@@ -174,7 +174,7 @@
   </target>
   
   <target name="clean.artifact.totem-daemon:jar" description="clean totem-daemon:jar artifact output">
-    <delete dir="${artifact.output.totem-daemon:jar}"/>
+    <delete dir="${artifact.output.totem-daemon.jar}"/>
   </target>
   
   <target name="artifact.totem-daemon:jar" depends="init.artifacts, compile.module.totem-daemon" description="Build &#39;totem-daemon:jar&#39; artifact">

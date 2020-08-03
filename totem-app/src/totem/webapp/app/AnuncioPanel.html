@@ -2,23 +2,65 @@
     <div wicket:id="ProgressBar">
         <div wicket:id="bar"></div>
     </div>
-    <div class="ui segment padded centered grid">
-        <div class="row">
-            <div class="sixteen wide column paddSides0">
-                <div style="margin-bottom: 0px;" class="center fluid huge label segment teal ui">
-                    <div wicket:id="saludo"></div>
-                </div>
-                <div class="center fluid huge label segment blue ui padd45">
-                    <div class="peso300" style="line-height: 30px;">
-                        <span wicket:id="texto1"></span>
-                        <strong wicket:id="cod"></strong>
-                        <span wicket:id="texto2"></span>
-                        <strong wicket:id="tramite" ></strong>
+    <div class="ui active dimmer" >
+        <div class="content">
+            <div class="ui segment padded centered grid">
+                <div class="row">
+                    <div class="sixteen wide column paddSides0">
+                        <div class="ui progress">
+                            <div class="bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="label">Procesando</div>
+                        </div>
+                        <div style="margin-bottom: 0px;" class="center fluid huge label segment teal ui">
+                            <div wicket:id="saludo"></div>
+                        </div>
+                        <div class="center fluid huge label segment blue ui padd45">
+                            <div class="peso300" style="line-height: 30px;">
+                                <span wicket:id="texto1"></span>
+                                <strong wicket:id="cod"></strong>
+                                <span wicket:id="texto2"></span>
+                                <strong wicket:id="tramite" ></strong>
+                            </div>
+                            <div class="peso300" style="line-height: 30px;" >Será llamado por su turno y nombre a través de la pantalla.</div>
+                        </div>
                     </div>
-                    <div class="peso300" style="line-height: 30px;" >Será llamado por su turno y nombre a través de la pantalla.</div>
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="ui modal" id="modalImpresion" style="border-radius: 1%">
+        <div class="ui header large center" style="border-radius: 1%; color:white; background-color: #27ace3 !important">
+           Impresión del ticket
+        </div>
+        <div class="content">
+            <div class="description center">
+                <p class="ui header">¿Se imprimió correctamente su ticket?</p>
+            </div>
+        </div>
+        <div class="actions" style="text-align: center">
+            <div class="ui negative teal button" onclick="{reprintTicket()}" style="font-size: 1.2em;">
+                No
+            </div>
+            <div class="ui positive teal button" onclick="{setUpProgress()}"  style="font-size: 1.2em;background-color: #27ace3 !important">
+                Sí
+            </div>
+        </div>
+    </div>
+    <div class="ui modal" id="modalErrorImpresion" style="border-radius: 1%">
+        <div class="ui header large center" style="border-radius: 1%; color:white; background-color: #27ace3 !important">
+            ERROR DE IMPRESIÓN
+        </div>
+        <div class="content">
+            <div class="description center">
+                <p class="ui header">Por favor, comuníquese con un operador de la sede</p>
+            </div>
+        </div>
+        <div class="actions" style="text-align: center">
+            <div class="ui negative teal button" onclick="{toHome()}" style="font-size: 1.2em;">
+                Aceptar
+            </div>
+        </div>
+    </div>
 </wicket:panel>

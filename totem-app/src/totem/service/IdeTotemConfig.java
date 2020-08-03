@@ -12,7 +12,7 @@ public class IdeTotemConfig implements TotemConfig {
     @Override
     public Properties getPersistenceProperties() {
         Properties prop = new Properties();
-        prop.setProperty("javax.persistence.jdbc.url", "jdbc:postgresql://localhost/totem");
+        prop.setProperty("javax.persistence.jdbc.url", "jdbc:postgresql://172.17.0.75:5432/totem");
         prop.setProperty("javax.persistence.jdbc.password", "tramites");
         prop.setProperty("javax.persistence.jdbc.driver", "org.postgresql.Driver");
         prop.setProperty("javax.persistence.jdbc.user", "dbtramites.12");
@@ -29,7 +29,7 @@ public class IdeTotemConfig implements TotemConfig {
 
     @Override
     public String getTurneroUriBase() {
-        return "http://localhost:8080/turnero_llamador_muni/ws/totem";
+        return "http://172.17.0.75:8089/turnero_ll/ws/totem";
     }
 
 }

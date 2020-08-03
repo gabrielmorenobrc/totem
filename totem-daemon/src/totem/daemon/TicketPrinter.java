@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.text.SimpleDateFormat;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -75,7 +76,6 @@ public class TicketPrinter {
             }
             line = reader.readLine();
         }
-
         client.endDoc(name);
     }
 
