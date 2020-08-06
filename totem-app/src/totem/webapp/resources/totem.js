@@ -246,7 +246,7 @@ function setUpProgress() {
             $('#anularBotones').removeClass('active');
             toHome()
         }
-    }, 25);
+    }, 15);
 }
 
 
