@@ -47,12 +47,22 @@ public class TotemPage extends WebPage {
         nombreSedeModel = new Model<>("");
         nombreSedeModel.setObject(sedeInfo.getDescripcion());
         notifierProvider.createNotifier(this, "notifier");
-        sessionData.setSelectedMenu("atencion");
+
+        StringValue onlineParam = pageParameters.get("online");
+
         addSetup();
         addTitle();
         addMenu();
         addContenido();
-        addAtencion();
+
+        if (onlineParam.toBoolean(false)) {
+            sessionData.setSelectedMenu("online");
+            addOnline();
+        } else {
+            sessionData.setSelectedMenu("atencion");
+            addAtencion();
+        }
+
     }
 
     private void addTitle() {
