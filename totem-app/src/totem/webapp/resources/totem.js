@@ -177,7 +177,7 @@ function printTicket(ticketData) {
             if(data.ok){
                 setUpProgress();
             }else {
-                if(intentos < 3){
+                if(intentos < 10){
                     $('#modalImpresion').modal({closable: false}).modal('show');
                     intentos = intentos + 1;
                 }else {
@@ -186,7 +186,7 @@ function printTicket(ticketData) {
                 }
             }
         }).fail( function(data) {
-            if(intentos < 3){
+            if(intentos < 10){
                 $('#modalImpresion').modal({closable: false}).modal('show');
                 intentos = intentos + 1;
             }else {
@@ -203,7 +203,7 @@ function reprintTicket() {
             if(data.ok){
                 setUpProgress();
             }else {
-                if(intentos < 3){
+                if(intentos < 10){
                     $('#modalImpresion').modal({closable: false}).modal('show');
                     intentos = intentos + 1;
                 }else {
@@ -212,7 +212,7 @@ function reprintTicket() {
                 }
             }
         }).fail( function(data){
-            if(intentos < 3){
+            if(intentos < 10){
                 $('#modalImpresion').modal({closable: false}).modal('show');
                 intentos = intentos + 1;
             }else {

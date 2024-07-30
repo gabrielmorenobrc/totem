@@ -22,7 +22,13 @@ public class TicketPrinter {
     public void init() {
         client = new NPClient();
         client.setCallback(new NCallbackImpl());
-        name = client.enumPrinters()[0];
+        String[] names = client.enumPrinters();
+        for (String Pname:names) {
+            if(Pname.contains("NPI")){
+                name = Pname;
+                break;
+            }
+        }
     }
 
     public void printTicket(PrintTicketData data) throws Exception {
@@ -38,10 +44,13 @@ public class TicketPrinter {
                 "1b6101\n" +
                 "\"" + dateFormat.format(data.getFecha()) + "\"\n" +
                 "0a\n" +
+                "1b21001C21001b\"E\"01\n" +
                 "\"" + data.getSede().toUpperCase() + "\n" +
                 "0a\n" +
+                "1b21001C21001b\"E\"01\n" +
                 "\"" + data.getCategoria().toUpperCase() + "\"\n" +
                 "0a\n" +
+                "1b21001C21001b\"E\"01\n" +
                 "\"" + data.getSubcategoria().toUpperCase() + "\"\n" +
                 "0a\n" +
                 "1b21001C21001b\"E\"01\n" +
@@ -52,8 +61,7 @@ public class TicketPrinter {
                 "0a\n" +
                 "0a\n" +
                 "\"" + data.getTramite().toUpperCase() + "\"\n" +
-                "0a0a0a0a0a0a\n" +
-                "1b69";
+                "0a0a0a0a0a0a\n" ;
 
 
         int status = waitForStatus();
@@ -64,15 +72,15 @@ public class TicketPrinter {
         WinDef.DWORDByReference jobId = new WinDef.DWORDByReference();
         client.startDoc(name, jobId);
 
-        String charset = "Cp1252";
+        String charset = "CP1252";
 
         BufferedReader reader = new BufferedReader(new StringReader(template));
         String line = reader.readLine();
         while (line != null) {
             if (!line.trim().isEmpty()) {
                 byte[] bytes = new NPData(charset).writeMixed(line).toBytes();
-                client.dprint(name, bytes
-                        , jobId);
+                client.dprint(name, bytes , jobId);
+                //                client.print(name, line , jobId);
             }
             line = reader.readLine();
         }
@@ -96,7 +104,7 @@ public class TicketPrinter {
         int r = client.getStatus(name, status);
         while (r != 0 || status[0] != 0) {
             n++;
-            if (n == 10) {
+            if (n == 40) {
                 break;
             }
             int v = status[0];

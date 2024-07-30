@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 public class NPClient {
     private static final Map<Integer, String> CODEMAP = loadCodeMap();
+    private static final int MAX_REINTENTOS = 30;
 
     private static Map<Integer, String> loadCodeMap() {
         Map<Integer, String> map = new HashMap<>();
@@ -41,10 +42,10 @@ public class NPClient {
     public String[] enumPrinters() {
         WinDef.DWORDByReference ref = new WinDef.DWORDByReference();
         int r = NPLibrary.INSTANCE.NEnumPrinters(null, ref);
-        checkResult(r);
+        System.out.println(r + ": " + CODEMAP.get(r));
         char[] names = new char[ref.getValue().intValue()];
         r = NPLibrary.INSTANCE.NEnumPrinters(names, ref);
-        checkResult(r);
+        System.out.println(r + ": " + CODEMAP.get(r));
         String string = new String(names);
         String[] parts = string.split(",");
         return parts;
@@ -56,7 +57,7 @@ public class NPClient {
         if (r > 0) {
             char[] names = new char[r + 1];
             r = NPLibrary.INSTANCE.NEnumDoc(toPWChar(name), names);
-            checkResult(r);
+            System.out.println(r + ": " + CODEMAP.get(r));
             String string = new String(names);
             String[] parts = string.split(",");
             return parts;
@@ -74,21 +75,29 @@ public class NPClient {
 
     public int resetPrinter(String name) {
         int r = NPLibrary.INSTANCE.NResetPrinter(toPWChar(name));
-        checkResult(r);
+        System.out.println(r + ": " + CODEMAP.get(r));
         return r;
     }
 
     public int print(final String name, String data, WinDef.DWORDByReference jobId) throws UnsupportedEncodingException {
-
-        Pointer pwchar = toPWChar(data);
-        int r = NPLibrary.INSTANCE.NPrint(toPWChar(name), pwchar, data.toCharArray().length * 2 + 1, null);
-        checkResult(r);
+        int cant = MAX_REINTENTOS;
+        int  r = -1;
+        while (r < 0 && cant > 0){
+            Pointer pwchar = toPWChar(data);
+            r = NPLibrary.INSTANCE.NPrint(toPWChar(name), pwchar, data.toCharArray().length * 2 + 1, null);
+        }
+        System.out.println(r + ": " + CODEMAP.get(r));
         return r;
     }
 
     public int dprint(final String name, byte[] data, WinDef.DWORDByReference jobId) throws UnsupportedEncodingException {
-        int r = NPLibrary.INSTANCE.NDPrint(toPWChar(name), data, data.length, jobId);
-        checkResult(r);
+        int cant = MAX_REINTENTOS;
+        int  r = -1;
+        while (r < 0 && cant > 0){
+            cant = cant -1;
+            r = NPLibrary.INSTANCE.NDPrint(toPWChar(name), data, data.length, jobId);
+        }
+        System.out.println(r + ": " + CODEMAP.get(r));
         return r;
     }
 
@@ -101,9 +110,13 @@ public class NPClient {
     }
 
     public int openPrinter(final String name) throws UnsupportedEncodingException {
-        Pointer pointer = toPWChar(name);
-        int r = NPLibrary.INSTANCE.NOpenPrinter(pointer, (byte) 0, null);
-        checkResult(r);
+        int cant = MAX_REINTENTOS;
+        int  r = -1;
+        while (r < 0 && cant > 0){
+            Pointer pointer = toPWChar(name);
+            r = NPLibrary.INSTANCE.NOpenPrinter(pointer, (byte) 0, null);
+        }
+        System.out.println(r + ": " + CODEMAP.get(r));
         return r;
     }
 
@@ -128,8 +141,12 @@ public class NPClient {
     }
 
     public int closePrinter(final String name) {
-        int r = NPLibrary.INSTANCE.NClosePrinter(toPWChar(name));
-        checkResult(r);
+        int cant = MAX_REINTENTOS;
+        int  r = -1;
+        while (r < 0 && cant > 0){
+             r = NPLibrary.INSTANCE.NClosePrinter(toPWChar(name));
+        }
+        System.out.println(r + ": " + CODEMAP.get(r));
         return r;
     }
 
@@ -145,15 +162,19 @@ public class NPClient {
             NPLibrary.INSTANCE.NEndDoc(toPWChar(name));
             r = NPLibrary.INSTANCE.NStartDoc(toPWChar(name), ref);
         }
-        checkResult(r);
+        System.out.println(r + ": " + CODEMAP.get(r));
         jobId.setValue(jobId.getValue());
         return r;
     }
 
 
     public int endDoc(final String name) {
-        int r = NPLibrary.INSTANCE.NEndDoc(toPWChar(name));
-        checkResult(r);
+        int cant = MAX_REINTENTOS;
+        int  r = -1;
+        while (r < 0 && cant > 0){
+             r = NPLibrary.INSTANCE.NEndDoc(toPWChar(name));
+        }
+        System.out.println(r + ": " + CODEMAP.get(r));
         return r;
     }
 

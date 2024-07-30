@@ -24,7 +24,7 @@ public class DevTotemConfig implements TotemConfig {
 
     @Override
     public String getTurneroUriBase() {
-        return "http://10.0.1.116:8089/turnero_ll/ws/totem";
+        return "http://10.10.0.219:8089/turnero_ll/ws/totem";
     }
 
     @Override
