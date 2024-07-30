@@ -24,7 +24,7 @@ public class ProdTotemConfig implements TotemConfig {
 
     @Override
     public String getTurneroUriBase() {
-        return "http://localhost:8089/turnero_ll/ws/totem";
+        return "http://localhost/turnero_ll/ws/totem";
     }
 
     @Override
